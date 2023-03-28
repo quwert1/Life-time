@@ -7,11 +7,11 @@
 # python "C:\Users\User\Desktop\Фото\Python\РАБОЧИЙ-ТАЙМЕР\Life_timer.py"
 
 
-import time, datetime, pyttsx3, random, os, threading, sys, keyboard
+import time, datetime, pyttsx3, random, os, threading, sys
 from audioplayer import AudioPlayer
 from playsound import playsound
 
-os.chdir('C:\\Program Files')
+os.chdir('/Users/vladislav/Desktop/coding/python/Life-time/Музыка-ТАЙМЕР')
 
 programm_condition = True
 s = 1
@@ -21,41 +21,28 @@ go_music = ["Ещё музычки? ", "Было славно. Го ещё? ", "
 def say_speaker(speaker_text):
     print(speaker_text)
 
+    
     engine = pyttsx3.init()
+
+    rate = engine.getProperty('rate')
+    engine.setProperty('rate', rate-100)
+
     engine.say(speaker_text)
     engine.runAndWait()
 
-# def endSongsSound():
-#     END_folder = "C:\\Users\\User\\Desktop\\Фото\\Python\\РАБОЧИЙ-ТАЙМЕР\\конечные песни"
-#     END_files = os.listdir(END_folder)
-#     END_file = random.choice(END_files)
-
-#     END_oFile = ("C:\\Users\\User\\Desktop\\Фото\\Python\\РАБОЧИЙ-ТАЙМЕР\\конечные песни\\" + END_file)
-
-#     AudioPlayer(END_oFile).play(block=True)
-
-# def notificationSound():
-#     NOTE_folder = "C:\\Users\\User\\Desktop\\Фото\\Python\\РАБОЧИЙ-ТАЙМЕР\\звуковые уведомления"
-#     NOTE_files = os.listdir(NOTE_folder)
-#     NOTE_file = random.choice(NOTE_files)
-
-#     NOTE_oFile = ("C:\\Users\\User\\Desktop\\Фото\\Python\\РАБОЧИЙ-ТАЙМЕР\\звуковые уведомления\\" + NOTE_file)
-
-#     AudioPlayer(NOTE_oFile).play(block=True)
-
 def endSongsSound():
-    END_folder = os.path.abspath("Музыка-ТАЙМЕР\\конечные песни")
+    END_folder = os.path.abspath("/Users/vladislav/Desktop/coding/python/Life-time/Музыка-ТАЙМЕР/конечные песни")
     END_files = os.listdir(END_folder)
     END_file = random.choice(END_files)
-    END_oFile = (END_folder + '\\' + END_file)
+    END_oFile = (END_folder + '/' + END_file)
 
     AudioPlayer(END_oFile).play(block=True)
 
 def notificationSound():
-    NOTE_folder = os.path.abspath("Музыка-ТАЙМЕР\\звуковые уведомления")
+    NOTE_folder = os.path.abspath("//Users/vladislav/Desktop/coding/python/Life-time/Музыка-ТАЙМЕР/звуковые уведомления")
     NOTE_files = os.listdir(NOTE_folder)
     NOTE_file = random.choice(NOTE_files)
-    NOTE_oFile = (NOTE_folder + '\\' + NOTE_file)
+    NOTE_oFile = (NOTE_folder + '/' + NOTE_file)
 
     AudioPlayer(NOTE_oFile).play(block=True)
 
@@ -79,9 +66,6 @@ def end_programm():
             endSongsSound()
             say_speaker(random.choice(go_music))
         elif repeat.lower() == 'n' or repeat.lower() == 'т':
-            # keyboard.press("CTRL")
-            # keyboard.press("c")
-            # keyboard.release("CTRL")
             break
         else:
             print('')
@@ -175,7 +159,6 @@ elif int(fullWorkHour) > int(curent_hour2):
     timer_hour = int(fullWorkHour) - int(curent_hour2)
 
 elif int(fullWorkHour) == int(curent_hour2):
-    # timer_hour = 0
     if int(curent_min2) > int(fullWorkMin):
         timer_hour = 24
     elif int(curent_min2) <= int(fullWorkMin):
@@ -211,16 +194,6 @@ while general_work_time != 0:
 
     curent_hour = now.hour
     curent_min = now.minute
-
-    # time.sleep(work)
-    # notificationSound()
-    # say_speaker(random.choice(chillAnswer))
-    # print('')
-
-    # time.sleep(chill)
-    # notificationSound()
-    # say_speaker(random.choice(workAnswer))
-    # print('')
 
     for i in range(0, work):
         if general_work_time == 0:
