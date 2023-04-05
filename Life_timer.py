@@ -1,4 +1,4 @@
-﻿# ТЗ:
+# ТЗ:
 # Добавить одну крутую мелодию, при произведении которой в фоне
 # ассистент говорил фразу и она играла...
 
@@ -20,12 +20,11 @@ go_music = ["Ещё музычки? ", "Было славно. Го ещё? ", "
 
 def say_speaker(speaker_text):
     print(speaker_text)
-
     
     engine = pyttsx3.init()
 
     rate = engine.getProperty('rate')
-    engine.setProperty('rate', rate-100)
+    engine.setProperty('rate', rate-130)
 
     engine.say(speaker_text)
     engine.runAndWait()
